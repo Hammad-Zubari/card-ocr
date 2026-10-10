@@ -1,0 +1,17 @@
+pymupdf==1.28.2
+opencv-contrib-python==4.10.0.84
+numpy==2.3.5
+pillow==12.1.0
+phonenumbers==9.0.40
+
+flask==3.1.3
+waitress==3.0.2
+python-dotenv==1.2.4
+
+# SQLAlchemy: on Windows with Smart App Control, install as pure Python:
+#   set DISABLE_SQLALCHEMY_CEXT=1 && pip install --no-binary sqlalchemy sqlalchemy==2.1.3
+sqlalchemy==2.1.3
+psycopg[binary]==3.3.6
+
+# tests
+pytest==9.1.1

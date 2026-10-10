@@ -1,0 +1,520 @@
+{
+  "cards_one_per_page.pdf": [
+    {
+      "page": 1,
+      "card": 1,
+      "name": "Muhammad Ali Khan",
+      "alt_name": "",
+      "address": "Plot 23, Sector 15, Korangi Industrial Area, Karachi 74900, Pakistan",
+      "telephone": [
+        "+92 21 3507 1234",
+        "+92 300 1234567"
+      ],
+      "email": "ali.khan@crescenttextile.com.pk"
+    },
+    {
+      "page": 2,
+      "card": 2,
+      "name": "Sarah Johnson",
+      "alt_name": "",
+      "address": "1250 Market Street, Suite 400, San Francisco, CA 94103, USA",
+      "telephone": [
+        "+1 (415) 555-0132"
+      ],
+      "email": "sarah.johnson@brightpath.io"
+    },
+    {
+      "page": 3,
+      "card": 3,
+      "name": "James O'Connor",
+      "alt_name": "",
+      "address": "22 King Street, London EC2V 8EH, United Kingdom",
+      "telephone": [
+        "+44 20 7946 0958"
+      ],
+      "email": "j.oconnor@oconnorhale.co.uk"
+    },
+    {
+      "page": 4,
+      "card": 4,
+      "name": "王伟",
+      "alt_name": "Wang Wei",
+      "address": "Room 1203, No. 88 Zhongshan Road, Ningbo, Zhejiang 315000, China",
+      "telephone": [
+        "+86 574 8765 4321",
+        "+86 138 0574 1234"
+      ],
+      "email": "wangwei@sunrise-trading.cn"
+    },
+    {
+      "page": 5,
+      "card": 5,
+      "name": "Dr. Ayesha Siddiqui",
+      "alt_name": "",
+      "address": "45-B Main Boulevard, Gulberg III, Lahore 54660, Pakistan",
+      "telephone": [
+        "+92 42 3578 9900"
+      ],
+      "email": ""
+    },
+    {
+      "page": 6,
+      "card": 6,
+      "name": "Lukas Weber",
+      "alt_name": "",
+      "address": "Industriestraße 14, 70565 Stuttgart, Germany",
+      "telephone": [
+        "+49 711 1234560"
+      ],
+      "email": "l.weber@kraftwerk-mb.de"
+    },
+    {
+      "page": 7,
+      "card": 7,
+      "name": "Priya Sharma",
+      "alt_name": "",
+      "address": "3rd Floor, Tower B, Cyber City, Gurugram, Haryana 122002, India",
+      "telephone": [
+        "+91 98765 43210"
+      ],
+      "email": "priya.sharma@infinitum.tech"
+    },
+    {
+      "page": 8,
+      "card": 8,
+      "name": "Ahmed Al Mansoori",
+      "alt_name": "",
+      "address": "Office 1504, Burj Gate Tower, Sheikh Zayed Road, Dubai, UAE",
+      "telephone": [
+        "+971 4 321 5678",
+        "+971 50 123 4567"
+      ],
+      "email": "ahmed@gulfhorizon.ae"
+    },
+    {
+      "page": 9,
+      "card": 9,
+      "name": "Emily Chen",
+      "alt_name": "",
+      "address": "200 Bay Street, Suite 1800, Toronto, ON M5J 2J2, Canada",
+      "telephone": [
+        "+1 416 555 0199"
+      ],
+      "email": "emily.chen@northstarcap.com"
+    },
+    {
+      "page": 10,
+      "card": 10,
+      "name": "Carlos Mendes",
+      "alt_name": "",
+      "address": "Rua Augusta 120, 1100-053 Lisboa, Portugal",
+      "telephone": [
+        "+351 21 123 4567"
+      ],
+      "email": "carlos.mendes@atlantico-log.pt"
+    },
+    {
+      "page": 11,
+      "card": 11,
+      "name": "Hannah Müller",
+      "alt_name": "",
+      "address": "Torstraße 55, 10119 Berlin, Germany",
+      "telephone": [],
+      "email": "hannah@hannahmueller.photo"
+    },
+    {
+      "page": 12,
+      "card": 12,
+      "name": "Kenji Tanaka",
+      "alt_name": "",
+      "address": "2-11-3 Shibuya, Shibuya-ku, Tokyo 150-0002, Japan",
+      "telephone": [
+        "+81 3 1234 5678"
+      ],
+      "email": "k.tanaka@sakura-design.jp"
+    },
+    {
+      "page": 13,
+      "card": 13,
+      "name": "Fatima Zahra Benali",
+      "alt_name": "",
+      "address": "18 Boulevard Zerktouni, Casablanca 20250, Morocco",
+      "telephone": [
+        "+212 522 123 456"
+      ],
+      "email": "f.benali@atlaspharma.ma"
+    },
+    {
+      "page": 14,
+      "card": 14,
+      "name": "Robert Williams",
+      "alt_name": "",
+      "address": "87 Oak Avenue, Springfield, IL 62704",
+      "telephone": [
+        "(217) 555-0147",
+        "(217) 555-0190"
+      ],
+      "email": "bob@williamsplumbing.com"
+    },
+    {
+      "page": 15,
+      "card": 15,
+      "name": "Zainab Hussain",
+      "alt_name": "",
+      "address": "Shop 12, Liberty Market, Faisalabad 38000, Pakistan",
+      "telephone": [
+        "0300-1234567"
+      ],
+      "email": "zainab.hussain@alkaramgarments.pk"
+    },
+    {
+      "page": 16,
+      "card": 16,
+      "name": "Oliver Brown",
+      "alt_name": "",
+      "address": "Level 9, 1 Martin Place, Sydney NSW 2000, Australia",
+      "telephone": [
+        "+61 2 9876 5432"
+      ],
+      "email": "oliver.brown@pinnacleins.com.au"
+    },
+    {
+      "page": 17,
+      "card": 17,
+      "name": "李娜",
+      "alt_name": "Li Na",
+      "address": "深圳市南山区科技园南路18号",
+      "telephone": [
+        "+86 755 2345 6789"
+      ],
+      "email": "lina@huamei-elec.com"
+    },
+    {
+      "page": 18,
+      "card": 18,
+      "name": "Michael Thompson",
+      "alt_name": "",
+      "address": "",
+      "telephone": [
+        "+1 617 555 0123"
+      ],
+      "email": "mthompson@summitanalytics.com"
+    },
+    {
+      "page": 19,
+      "card": 19,
+      "name": "Sofia Rossi",
+      "alt_name": "",
+      "address": "Via Roma 45, 20121 Milano, Italy",
+      "telephone": [
+        "+39 02 1234 5678"
+      ],
+      "email": "sofia@studiorossi.it"
+    },
+    {
+      "page": 20,
+      "card": 20,
+      "name": "Daniel Kim",
+      "alt_name": "",
+      "address": "15F, 123 Teheran-ro, Gangnam-gu, Seoul 06133, South Korea",
+      "telephone": [
+        "+82 2 555 1234"
+      ],
+      "email": "daniel.kim@hanbitshipping.kr"
+    }
+  ],
+  "cards_multi_per_page.pdf": [
+    {
+      "page": 1,
+      "card": 1,
+      "name": "Muhammad Ali Khan",
+      "alt_name": "",
+      "address": "Plot 23, Sector 15, Korangi Industrial Area, Karachi 74900, Pakistan",
+      "telephone": [
+        "+92 21 3507 1234",
+        "+92 300 1234567"
+      ],
+      "email": "ali.khan@crescenttextile.com.pk"
+    },
+    {
+      "page": 1,
+      "card": 2,
+      "name": "Sarah Johnson",
+      "alt_name": "",
+      "address": "1250 Market Street, Suite 400, San Francisco, CA 94103, USA",
+      "telephone": [
+        "+1 (415) 555-0132"
+      ],
+      "email": "sarah.johnson@brightpath.io"
+    },
+    {
+      "page": 1,
+      "card": 3,
+      "name": "James O'Connor",
+      "alt_name": "",
+      "address": "22 King Street, London EC2V 8EH, United Kingdom",
+      "telephone": [
+        "+44 20 7946 0958"
+      ],
+      "email": "j.oconnor@oconnorhale.co.uk"
+    },
+    {
+      "page": 1,
+      "card": 4,
+      "name": "王伟",
+      "alt_name": "Wang Wei",
+      "address": "Room 1203, No. 88 Zhongshan Road, Ningbo, Zhejiang 315000, China",
+      "telephone": [
+        "+86 574 8765 4321",
+        "+86 138 0574 1234"
+      ],
+      "email": "wangwei@sunrise-trading.cn"
+    },
+    {
+      "page": 1,
+      "card": 5,
+      "name": "Dr. Ayesha Siddiqui",
+      "alt_name": "",
+      "address": "45-B Main Boulevard, Gulberg III, Lahore 54660, Pakistan",
+      "telephone": [
+        "+92 42 3578 9900"
+      ],
+      "email": ""
+    },
+    {
+      "page": 1,
+      "card": 6,
+      "name": "Lukas Weber",
+      "alt_name": "",
+      "address": "Industriestraße 14, 70565 Stuttgart, Germany",
+      "telephone": [
+        "+49 711 1234560"
+      ],
+      "email": "l.weber@kraftwerk-mb.de"
+    },
+    {
+      "page": 1,
+      "card": 7,
+      "name": "Priya Sharma",
+      "alt_name": "",
+      "address": "3rd Floor, Tower B, Cyber City, Gurugram, Haryana 122002, India",
+      "telephone": [
+        "+91 98765 43210"
+      ],
+      "email": "priya.sharma@infinitum.tech"
+    },
+    {
+      "page": 1,
+      "card": 8,
+      "name": "Ahmed Al Mansoori",
+      "alt_name": "",
+      "address": "Office 1504, Burj Gate Tower, Sheikh Zayed Road, Dubai, UAE",
+      "telephone": [
+        "+971 4 321 5678",
+        "+971 50 123 4567"
+      ],
+      "email": "ahmed@gulfhorizon.ae"
+    },
+    {
+      "page": 2,
+      "card": 9,
+      "name": "Emily Chen",
+      "alt_name": "",
+      "address": "200 Bay Street, Suite 1800, Toronto, ON M5J 2J2, Canada",
+      "telephone": [
+        "+1 416 555 0199"
+      ],
+      "email": "emily.chen@northstarcap.com"
+    },
+    {
+      "page": 2,
+      "card": 10,
+      "name": "Carlos Mendes",
+      "alt_name": "",
+      "address": "Rua Augusta 120, 1100-053 Lisboa, Portugal",
+      "telephone": [
+        "+351 21 123 4567"
+      ],
+      "email": "carlos.mendes@atlantico-log.pt"
+    },
+    {
+      "page": 2,
+      "card": 11,
+      "name": "Hannah Müller",
+      "alt_name": "",
+      "address": "Torstraße 55, 10119 Berlin, Germany",
+      "telephone": [],
+      "email": "hannah@hannahmueller.photo"
+    },
+    {
+      "page": 2,
+      "card": 12,
+      "name": "Kenji Tanaka",
+      "alt_name": "",
+      "address": "2-11-3 Shibuya, Shibuya-ku, Tokyo 150-0002, Japan",
+      "telephone": [
+        "+81 3 1234 5678"
+      ],
+      "email": "k.tanaka@sakura-design.jp"
+    },
+    {
+      "page": 2,
+      "card": 13,
+      "name": "Fatima Zahra Benali",
+      "alt_name": "",
+      "address": "18 Boulevard Zerktouni, Casablanca 20250, Morocco",
+      "telephone": [
+        "+212 522 123 456"
+      ],
+      "email": "f.benali@atlaspharma.ma"
+    },
+    {
+      "page": 2,
+      "card": 14,
+      "name": "Robert Williams",
+      "alt_name": "",
+      "address": "87 Oak Avenue, Springfield, IL 62704",
+      "telephone": [
+        "(217) 555-0147",
+        "(217) 555-0190"
+      ],
+      "email": "bob@williamsplumbing.com"
+    },
+    {
+      "page": 2,
+      "card": 15,
+      "name": "Zainab Hussain",
+      "alt_name": "",
+      "address": "Shop 12, Liberty Market, Faisalabad 38000, Pakistan",
+      "telephone": [
+        "0300-1234567"
+      ],
+      "email": "zainab.hussain@alkaramgarments.pk"
+    },
+    {
+      "page": 2,
+      "card": 16,
+      "name": "Oliver Brown",
+      "alt_name": "",
+      "address": "Level 9, 1 Martin Place, Sydney NSW 2000, Australia",
+      "telephone": [
+        "+61 2 9876 5432"
+      ],
+      "email": "oliver.brown@pinnacleins.com.au"
+    },
+    {
+      "page": 3,
+      "card": 17,
+      "name": "李娜",
+      "alt_name": "Li Na",
+      "address": "深圳市南山区科技园南路18号",
+      "telephone": [
+        "+86 755 2345 6789"
+      ],
+      "email": "lina@huamei-elec.com"
+    },
+    {
+      "page": 3,
+      "card": 18,
+      "name": "Michael Thompson",
+      "alt_name": "",
+      "address": "",
+      "telephone": [
+        "+1 617 555 0123"
+      ],
+      "email": "mthompson@summitanalytics.com"
+    },
+    {
+      "page": 3,
+      "card": 19,
+      "name": "Sofia Rossi",
+      "alt_name": "",
+      "address": "Via Roma 45, 20121 Milano, Italy",
+      "telephone": [
+        "+39 02 1234 5678"
+      ],
+      "email": "sofia@studiorossi.it"
+    },
+    {
+      "page": 3,
+      "card": 20,
+      "name": "Daniel Kim",
+      "alt_name": "",
+      "address": "15F, 123 Teheran-ro, Gangnam-gu, Seoul 06133, South Korea",
+      "telephone": [
+        "+82 2 555 1234"
+      ],
+      "email": "daniel.kim@hanbitshipping.kr"
+    }
+  ],
+  "cards_low_quality.pdf": [
+    {
+      "page": 1,
+      "card": 1,
+      "name": "Muhammad Ali Khan",
+      "alt_name": "",
+      "address": "Plot 23, Sector 15, Korangi Industrial Area, Karachi 74900, Pakistan",
+      "telephone": [
+        "+92 21 3507 1234",
+        "+92 300 1234567"
+      ],
+      "email": "ali.khan@crescenttextile.com.pk"
+    },
+    {
+      "page": 2,
+      "card": 2,
+      "name": "James O'Connor",
+      "alt_name": "",
+      "address": "22 King Street, London EC2V 8EH, United Kingdom",
+      "telephone": [
+        "+44 20 7946 0958"
+      ],
+      "email": "j.oconnor@oconnorhale.co.uk"
+    },
+    {
+      "page": 3,
+      "card": 3,
+      "name": "Ahmed Al Mansoori",
+      "alt_name": "",
+      "address": "Office 1504, Burj Gate Tower, Sheikh Zayed Road, Dubai, UAE",
+      "telephone": [
+        "+971 4 321 5678",
+        "+971 50 123 4567"
+      ],
+      "email": "ahmed@gulfhorizon.ae"
+    },
+    {
+      "page": 4,
+      "card": 4,
+      "name": "Fatima Zahra Benali",
+      "alt_name": "",
+      "address": "18 Boulevard Zerktouni, Casablanca 20250, Morocco",
+      "telephone": [
+        "+212 522 123 456"
+      ],
+      "email": "f.benali@atlaspharma.ma"
+    },
+    {
+      "page": 5,
+      "card": 5,
+      "name": "Oliver Brown",
+      "alt_name": "",
+      "address": "Level 9, 1 Martin Place, Sydney NSW 2000, Australia",
+      "telephone": [
+        "+61 2 9876 5432"
+      ],
+      "email": "oliver.brown@pinnacleins.com.au"
+    },
+    {
+      "page": 6,
+      "card": 6,
+      "name": "Sofia Rossi",
+      "alt_name": "",
+      "address": "Via Roma 45, 20121 Milano, Italy",
+      "telephone": [
+        "+39 02 1234 5678"
+      ],
+      "email": "sofia@studiorossi.it"
+    }
+  ]
+}

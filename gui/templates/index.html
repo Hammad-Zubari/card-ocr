@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ecommerce Gateway Pakistan - Visitor Card OCR</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- TOP NAVBAR -->
+<header class="topbar-3d">
+  <div class="brand">
+    <div class="brand-logo-wrap">
+      <img src="{{ url_for('static', filename='logo.png') }}" alt="Ecommerce Gateway Pakistan Logo" class="brand-logo-large">
+    </div>
+    <div class="brand-text">
+      <h1>Ecommerce Gateway Pakistan</h1>
+      <span class="brand-sub">Visitor Card OCR & Database System</span>
+    </div>
+  </div>
+
+  <div class="topbar-right">
+    <nav class="tabs-3d">
+      <button class="tab-btn active" data-tab="process">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <span>Scanner Workspace</span>
+      </button>
+      <button class="tab-btn" data-tab="records">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+        <span>Database Records</span>
+      </button>
+    </nav>
+    <button class="btn-3d btn-drawer-toggle" id="btn-toggle-drawer" title="Toggle quick side records panel">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M15 3v18"/></svg>
+      <span>Quick Records</span>
+    </button>
+    
+    <div class="user-profile-widget-3d">
+      <div class="user-avatar-3d">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <span class="user-name-label">{{ current_user or 'admin' }}</span>
+    </div>
+
+    <a href="{{ url_for('logout') }}" class="btn-3d btn-logout-3d" title="Sign out of the system">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      <span>Logout</span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <!-- ============================================================ PROCESS TAB -->
+  <section id="tab-process" class="tab-panel active">
+    
+    <!-- Unified 3D Upload & Batch Processing Panel -->
+    <div class="panel-3d upload-hero-panel">
+      <div class="panel-header-row">
+        <div>
+          <span class="badge-tag-3d">BATCH SCANNING</span>
+          <h2>Upload Visitor Card Batches</h2>
+          <p class="muted">Upload multi-card PDF scans. NVIDIA/Qwen Vision extracts all fields and Gemini 2.5 verifies every record.</p>
+        </div>
+      </div>
+
+      <div class="upload-split-layout">
+        
+        <!-- Dropzone with 3D Depth -->
+        <div id="dropzone" class="dropzone-3d">
+          <input type="file" id="file-input" accept="application/pdf,.pdf" multiple hidden>
+          <div class="dropzone-content">
+            <div class="drop-icon-3d">
+              <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            </div>
+            <h3>Drag & Drop Scanned PDFs Here</h3>
+            <p>or <button class="btn-link" id="btn-choose" type="button">Browse Local Files</button></p>
+            <span class="file-limits">Supports multi-page PDFs · Up to {{ max_upload_mb }} MB per request</span>
+          </div>
+        </div>
+
+        <!-- File Queue & Process Controls -->
+        <div class="upload-controls-3d">
+          <div class="queue-header-3d">
+            <span class="queue-label">PDF BATCH QUEUE</span>
+            <button class="btn-3d btn-sm ghost" id="btn-reset" type="button">Reset Batch</button>
+          </div>
+          
+          <ul id="file-list" class="file-list-3d"><li class="muted empty-item">No PDF files uploaded yet.</li></ul>
+
+          <!-- Action & Engine Selector Group -->
+          <div class="process-action-card-3d">
+            <button class="btn-3d btn-process-primary" id="btn-process" disabled type="button">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span>Start Processing Batch</span>
+            </button>
+
+            <!-- Model Selection Dropdown Directly Under Processing Button -->
+            <div class="engine-dropdown-row">
+              <div class="engine-dropdown-group">
+                <label for="provider-select" class="dropdown-label">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                  OCR Engine:
+                </label>
+                <div class="select-wrapper-3d">
+                  <select id="provider-select" class="select-3d">
+                    <option value="qwen" selected>⚡ Qwen 2.5 Vision (OpenRouter / 72B)</option>
+                    <option value="nvidia">🚀 NVIDIA Vision (Meta Llama 3.2 11B NIM)</option>
+                  </select>
+                </div>
+              </div>
+              <button class="btn-3d btn-sm secondary btn-test-engine" id="btn-test-active-engine" type="button" title="Test selected OCR engine connectivity">
+                Test Engine
+              </button>
+            </div>
+
+            <!-- Gemini 2.5 Verification Assurance Pill -->
+            <div class="gemini-status-strip">
+              <div class="gemini-strip-left">
+                <span class="live-dot-green"></span>
+                <span><strong>Gemini 2.5 Verifier Active:</strong> Automated multi-pass verification prevents cross-card data overlap & fixes email/phone typos.</span>
+              </div>
+              <button class="btn-gemini-test-link" id="btn-gemini-check" type="button">Test Gemini</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Progress & Live Status Dashboard -->
+    <div class="panel-3d progress-panel-3d">
+      <div class="progress-top-row">
+        <div class="progress-text-block">
+          <span class="progress-title-3d">Batch Status</span>
+          <span id="status-msg" class="status-msg muted">Upload one or more PDFs to begin processing.</span>
+        </div>
+        <div class="progress-badge-3d" id="progress-pct">0%</div>
+      </div>
+
+      <div class="progress-track-3d">
+        <div id="progress-bar" class="progress-bar-3d"></div>
+      </div>
+
+      <div class="stats-grid-3d" id="stats">
+        <div class="stat-card-3d">
+          <span class="stat-label">PDFs</span>
+          <b class="stat-val" data-k="pdfs">–</b>
+        </div>
+        <div class="stat-card-3d">
+          <span class="stat-label">Detected Cards</span>
+          <b class="stat-val" data-k="cards_detected">–</b>
+        </div>
+        <div class="stat-card-3d">
+          <span class="stat-label">Processed</span>
+          <b class="stat-val" data-k="cards_processed">–</b>
+        </div>
+        <div class="stat-card-3d ok">
+          <span class="stat-label">Verified OK</span>
+          <b class="stat-val" data-k="successful">–</b>
+        </div>
+        <div class="stat-card-3d warn">
+          <span class="stat-label">Needs Review</span>
+          <b class="stat-val" data-k="needs_review">–</b>
+        </div>
+        <div class="stat-card-3d bad">
+          <span class="stat-label">Failed</span>
+          <b class="stat-val" data-k="failed">–</b>
+        </div>
+        <div class="stat-card-3d time">
+          <span class="stat-label">Total Time</span>
+          <b class="stat-val" data-t="total">–</b>
+        </div>
+      </div>
+
+      <details id="errors-box" class="errors-box-3d" hidden>
+        <summary>System Logs & Warnings (<span id="errors-count">0</span>)</summary>
+        <ul id="errors"></ul>
+      </details>
+    </div>
+
+    <!-- LIVE SCANNING PULSE PANEL -->
+    <div class="panel-3d live-scan-panel-3d">
+      <div class="live-scan-header-3d">
+        <div class="live-tag-wrap">
+          <span class="live-pulse-dot"></span>
+          <span class="live-tag-title">REAL-TIME SCAN MONITOR</span>
+        </div>
+        <span id="live-scan-msg" class="live-subtitle muted">Waiting for scan to start…</span>
+      </div>
+
+      <div class="live-scan-body-3d">
+        <div class="live-scan-image-box-3d">
+          <div class="scanner-laser" id="scanner-laser" hidden></div>
+          <img id="live-scan-image" alt="Scanned visitor card preview" hidden>
+          <div class="live-scan-placeholder" id="live-scan-placeholder">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span>Live crop preview will appear here</span>
+          </div>
+        </div>
+
+        <div class="live-scan-fields-wrap">
+          <div id="live-scan-fields" class="live-scan-fields-3d">
+            <div class="field-card-3d"><span>Name</span><b>—</b></div>
+            <div class="field-card-3d"><span>Designation</span><b>—</b></div>
+            <div class="field-card-3d"><span>Company Name</span><b>—</b></div>
+            <div class="field-card-3d"><span>Address</span><b>—</b></div>
+            <div class="field-card-3d"><span>Telephone</span><b>—</b></div>
+            <div class="field-card-3d"><span>Mobile Phone</span><b>—</b></div>
+            <div class="field-card-3d"><span>Email</span><b>—</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCAN RESULTS & REVIEW TABLE -->
+    <div class="panel-3d results-panel-3d">
+      <div class="toolbar-3d">
+        <div class="toolbar-left">
+          <div class="filter-group">
+            <label class="filter-label">Filter:</label>
+            <select id="filter" class="form-control-3d">
+              <option value="all">All Cards</option>
+              <option value="OK">Verified OK</option>
+              <option value="Needs Review">Needs Review</option>
+              <option value="Failed">Failed Only</option>
+              <option value="unsaved">Not Saved to DB</option>
+            </select>
+          </div>
+
+          <div class="search-group-3d">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="search" id="search" class="form-control-3d search-input" placeholder="Search name, phone, email, designation…">
+          </div>
+        </div>
+
+        <div class="toolbar-right">
+          <button class="btn-3d secondary" id="btn-csv" disabled type="button">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Export CSV</span>
+          </button>
+          <button class="btn-3d primary" id="btn-save-all" disabled type="button" title="Save all scanned & edited records directly to database">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            <span>Save All to Database</span>
+          </button>
+          <button class="btn-3d secondary" id="btn-save" disabled type="button">
+            <span>Save Valid (OK)</span>
+          </button>
+          <button class="btn-3d warn" id="btn-save-review" disabled type="button">
+            <span>Save Reviewed</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="table-detail-split">
+        <div class="table-wrap-3d">
+          <table id="results">
+            <thead>
+              <tr>
+                <th class="c-num">#</th>
+                <th class="c-preview">Card Image</th>
+                <th class="c-name">Name</th>
+                <th class="c-title">Designation</th>
+                <th class="c-name">Company Name</th>
+                <th class="c-addr">Address</th>
+                <th class="c-tel">Telephone</th>
+                <th class="c-mobile">Mobile Phone</th>
+                <th class="c-email">Email</th>
+                <th class="c-biz">Main Class</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="empty">
+                <td colspan="10">
+                  <div class="empty-state">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                    <p>Scanned visitor card records will stream here in real-time.</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <aside id="detail" class="detail-sidebar-3d">
+          <div class="detail-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <p>Select any table row to inspect card preview and edit fields.</p>
+          </div>
+        </aside>
+      </div>
+
+      <div class="table-footer-hint">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <span><strong>Tip:</strong> Double click any cell in the table to edit directly. Null fields are safely stored as empty. Click <em>Save Valid to Database</em> to persist.</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============================================================ DATABASE DIRECTORY TAB -->
+  <section id="tab-records" class="tab-panel">
+    <div class="panel-3d">
+      <div class="panel-header-row">
+        <div>
+          <span class="badge-tag-3d">DATABASE DIRECTORY</span>
+          <h2>Saved Visitor Cards</h2>
+          <p class="muted">Search, filter, edit, delete, and export all visitors in the database.</p>
+        </div>
+        <div class="record-header-actions">
+          <button class="btn-3d secondary" id="btn-rec-export">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Export CSV</span>
+          </button>
+          <button class="btn-3d primary" id="btn-rec-refresh">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            <span>Refresh Data</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Advanced Filters Bar -->
+      <div class="filter-card-3d">
+        <div class="filter-row">
+          <div class="form-group flex-2">
+            <label>Search Keyword</label>
+            <input type="search" id="rec-search" class="form-control-3d" placeholder="Search name, phone, email, address, designation…">
+          </div>
+          <div class="form-group">
+            <label>From Date</label>
+            <input type="date" id="rec-date-from" class="form-control-3d">
+          </div>
+          <div class="form-group">
+            <label>To Date</label>
+            <input type="date" id="rec-date-to" class="form-control-3d">
+          </div>
+          <div class="form-group">
+            <label>Sort By</label>
+            <select id="rec-sort" class="form-control-3d">
+              <option value="id_desc">Newest First (ID ↓)</option>
+              <option value="id_asc">Oldest First (ID ↑)</option>
+              <option value="name_asc">Name (A → Z)</option>
+              <option value="name_desc">Name (Z → A)</option>
+            </select>
+          </div>
+          <div class="form-group-btn">
+            <button class="btn-3d ghost" id="btn-rec-reset-filters" type="button">Reset</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="records-meta-bar">
+        <span id="rec-count" class="records-count-badge">Loading records…</span>
+        <div id="rec-bulk-actions" class="bulk-actions" hidden>
+          <span id="bulk-selected-count">0 selected</span>
+          <button class="btn-3d bad btn-sm" id="btn-bulk-delete">Delete Selected</button>
+        </div>
+      </div>
+
+      <div class="table-wrap-3d tall">
+        <table id="records">
+          <thead>
+            <tr>
+              <th class="c-chk"><input type="checkbox" id="chk-all-records"></th>
+              <th class="c-num">ID</th>
+              <th class="c-name">Name</th>
+              <th class="c-title">Designation</th>
+              <th class="c-name">Company Name</th>
+              <th class="c-addr">Address</th>
+              <th class="c-tel">Telephone</th>
+              <th class="c-mobile">Mobile Phone</th>
+              <th class="c-email">Email</th>
+              <th class="c-biz">Main Class</th>
+              <th class="c-date">Saved Date</th>
+              <th class="c-act">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="empty"><td colspan="13">Loading records from database…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============================================================ SLIDE-OUT RECORDS DRAWER -->
+<div id="drawer-overlay" class="drawer-overlay" hidden></div>
+<aside id="records-drawer" class="records-drawer-3d">
+  <div class="drawer-header-3d">
+    <div class="drawer-title-wrap">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+      <div>
+        <h3>Saved Records Panel</h3>
+        <span class="muted" id="drawer-rec-count">0 records</span>
+      </div>
+    </div>
+    <button class="btn-close-drawer" id="btn-close-drawer" title="Close Side Panel">✕</button>
+  </div>
+
+  <div class="drawer-toolbar">
+    <input type="search" id="drawer-search" class="form-control-3d" placeholder="Search saved records…">
+    <button class="btn-3d btn-sm secondary" id="btn-drawer-refresh">Refresh</button>
+  </div>
+
+  <div class="drawer-records-list" id="drawer-records-list">
+    <p class="muted text-center p-4">Loading saved records…</p>
+  </div>
+</aside>
+
+<!-- ============================================================ EDIT RECORD MODAL -->
+<dialog id="edit-modal" class="modal-dialog-3d">
+  <div class="modal-content-3d">
+    <div class="modal-header-3d">
+      <div>
+        <span class="badge-tag-3d">RECORD EDITOR</span>
+        <h3 id="modal-title">Edit Record</h3>
+      </div>
+      <button class="btn-close-modal" id="btn-modal-close" type="button">✕</button>
+    </div>
+    <form id="modal-edit-form">
+      <input type="hidden" id="edit-rec-id" name="id">
+      <div class="modal-grid">
+        <div class="form-group">
+          <label for="edit-name">Full Name</label>
+          <input type="text" id="edit-name" name="name" class="form-control-3d">
+        </div>
+        <div class="form-group">
+          <label for="edit-job-title">Designation / Role</label>
+          <input type="text" id="edit-job-title" name="job_title" class="form-control-3d">
+        </div>
+        <div class="form-group">
+          <label for="edit-company-name">Company Name</label>
+          <input type="text" id="edit-company-name" name="company_name" class="form-control-3d">
+        </div>
+        <div class="form-group full-width">
+          <label for="edit-address">Address</label>
+          <input type="text" id="edit-address" name="address" class="form-control-3d">
+        </div>
+        <div class="form-group">
+          <label for="edit-telephone">Telephone (Landline)</label>
+          <input type="text" id="edit-telephone" name="telephone" class="form-control-3d">
+        </div>
+        <div class="form-group">
+          <label for="edit-mobile">Mobile Phone</label>
+          <input type="text" id="edit-mobile" name="mobile_phone" class="form-control-3d">
+        </div>
+        <div class="form-group full-width">
+          <label for="edit-email">Email Address(es)</label>
+          <input type="text" id="edit-email" name="email" class="form-control-3d">
+        </div>
+        <div class="form-group full-width">
+          <label for="edit-business-type">Main Class</label>
+          <textarea id="edit-business-type" name="business_type" class="form-control-3d" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="edit-business-confidence">Search Confidence (%)</label>
+          <input type="number" id="edit-business-confidence" name="business_confidence"
+                 class="form-control-3d" min="0" max="100">
+        </div>
+      </div>
+      <div class="modal-actions-3d">
+        <button type="button" class="btn-3d bad ghost" id="btn-modal-delete">Delete Record</button>
+        <div class="spacer"></div>
+        <button type="button" class="btn-3d ghost" id="btn-modal-cancel">Cancel</button>
+        <button type="submit" class="btn-3d primary" id="btn-modal-save">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</dialog>
+
+<!-- TOAST NOTIFICATION -->
+<div id="toast" class="toast-3d" hidden></div>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+<script>
+  // Trap browser Back button to immediately invalidate session and require re-login
+  (function() {
+    history.pushState(null, null, location.href);
+    window.addEventListener("popstate", function () {
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon("/api/auth/lock");
+      } else {
+        fetch("/api/auth/lock", { method: "POST", keepalive: true });
+      }
+      window.location.replace("/login");
+    });
+
+    // Force reload and re-authentication on bfcache back/forward navigation
+    window.addEventListener("pageshow", function (event) {
+      if (event.persisted || (window.performance && performance.getEntriesByType("navigation")[0]?.type === "back_forward")) {
+        window.location.reload();
+      }
+    });
+
+    // Verify session when user returns to the tab
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible") {
+        fetch("/api/auth/check").then(res => {
+          if (!res.ok) window.location.replace("/login");
+        }).catch(() => {});
+      }
+    });
+  })();
+</script>
+</body>
+</html>

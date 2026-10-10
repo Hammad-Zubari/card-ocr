@@ -1,0 +1,908 @@
+/* ==========================================================================
+   Ecommerce Gateway Pakistan - Futuristic Login & OCR Hologram Styles
+   ========================================================================== */
+
+:root {
+  --bg-primary: #060914;
+  --bg-surface: #0f152b;
+  --bg-glass-card: rgba(15, 22, 45, 0.75);
+  --border-glass: rgba(255, 255, 255, 0.12);
+  --border-glow: rgba(6, 182, 212, 0.45);
+  
+  --brand-cyan: #06b6d4;
+  --brand-cyan-bright: #22d3ee;
+  --brand-cyan-glow: rgba(6, 182, 212, 0.6);
+  --brand-indigo: #6366f1;
+  --brand-purple: #8b5cf6;
+  --brand-emerald: #10b981;
+  
+  --text-main: #f8fafc;
+  --text-muted: #cbd5e1;
+  --text-dim: #94a3b8;
+  
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  
+  --shadow-lg: 0 25px 60px rgba(0, 0, 0, 0.65);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* ==========================================================================
+   Ambient Background Grids & Hologram Lights
+   ========================================================================== */
+
+.cyber-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.55;
+  animation: floatLight 12s ease-in-out infinite alternate;
+}
+
+.glow-1 {
+  width: 550px;
+  height: 550px;
+  top: -100px;
+  left: -100px;
+  background: radial-gradient(circle, #06b6d4 0%, rgba(6, 182, 212, 0) 70%);
+}
+
+.glow-2 {
+  width: 600px;
+  height: 600px;
+  bottom: -150px;
+  right: -100px;
+  background: radial-gradient(circle, #6366f1 0%, rgba(99, 102, 241, 0) 70%);
+  animation-duration: 16s;
+}
+
+.glow-3 {
+  width: 450px;
+  height: 450px;
+  top: 40%;
+  left: 45%;
+  background: radial-gradient(circle, #8b5cf6 0%, rgba(139, 92, 246, 0) 70%);
+  opacity: 0.3;
+  animation-duration: 20s;
+}
+
+@keyframes floatLight {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(40px, 50px) scale(1.15); }
+}
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 38px 38px;
+  mask-image: radial-gradient(ellipse at center, black 45%, transparent 85%);
+}
+
+.scanline-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0) 50%,
+    rgba(0, 0, 0, 0.15) 50%,
+    rgba(0, 0, 0, 0.15)
+  );
+  background-size: 100% 4px;
+  opacity: 0.35;
+}
+
+/* ==========================================================================
+   Main Split Layout Container
+   ========================================================================== */
+
+.login-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1220px;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 45px;
+  align-items: center;
+}
+
+/* ==========================================================================
+   LEFT PANEL: 3D Holographic Visiting Card OCR Scanner
+   ========================================================================== */
+
+.ocr-visual-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 20px;
+}
+
+.visual-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  background: rgba(6, 182, 212, 0.15);
+  border: 1px solid rgba(6, 182, 212, 0.45);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--brand-cyan-bright);
+  letter-spacing: 0.05em;
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--brand-cyan-bright);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--brand-cyan-bright);
+  animation: pulseLight 1.4s infinite;
+}
+
+@keyframes pulseLight {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.65); }
+}
+
+.tech-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+}
+
+/* Hologram 3D Stage */
+.hologram-stage {
+  position: relative;
+  height: 390px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+.visiting-card-3d {
+  position: relative;
+  width: 450px;
+  height: 270px;
+  background: linear-gradient(135deg, rgba(22, 32, 64, 0.9), rgba(10, 16, 36, 0.96));
+  border: 1px solid rgba(6, 182, 212, 0.45);
+  border-radius: 18px;
+  padding: 22px 26px;
+  box-shadow: 
+    0 25px 60px rgba(0, 0, 0, 0.7),
+    0 0 45px rgba(6, 182, 212, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(25px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: transform 0.15s ease-out;
+  transform: perspective(1000px) rotateY(-8deg) rotateX(6deg);
+}
+
+/* Card Hologram Laser Scanner Beam */
+.scanner-laser {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 20;
+  pointer-events: none;
+  animation: scanLaser 3.8s ease-in-out infinite alternate;
+}
+
+.laser-line {
+  width: 100%;
+  height: 3px;
+  background: #22d3ee;
+  box-shadow: 
+    0 0 15px #06b6d4,
+    0 0 30px #06b6d4,
+    0 0 50px rgba(6, 182, 212, 0.9);
+}
+
+.laser-flare {
+  position: absolute;
+  top: -45px;
+  left: 0;
+  right: 0;
+  height: 90px;
+  background: linear-gradient(to bottom, transparent, rgba(6, 182, 212, 0.22), transparent);
+}
+
+@keyframes scanLaser {
+  0% { top: -10px; }
+  100% { top: 275px; }
+}
+
+/* Card Internal Layout */
+.card-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-chip-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-chip {
+  width: 38px;
+  height: 28px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 4px;
+}
+
+.chip-line {
+  height: 1.5px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.card-watermark {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* Logo on 3D Card */
+.card-logo-badge {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 6px 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25), 0 0 12px rgba(255, 255, 255, 0.4);
+  height: 42px;
+}
+
+.card-logo-img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* OCR Bounding Boxes */
+.ocr-box {
+  position: relative;
+  border: 1px dashed rgba(6, 182, 212, 0.6);
+  background: rgba(6, 182, 212, 0.08);
+  border-radius: 6px;
+  padding: 4px 8px;
+  display: inline-flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.ocr-tag {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: var(--brand-cyan-bright);
+  letter-spacing: 0.08em;
+  margin-bottom: 2px;
+}
+
+.ocr-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.ocr-dashes {
+  font-family: var(--font-mono);
+  letter-spacing: 0.2em;
+  font-weight: 800;
+  color: #bae6fd;
+  opacity: 0.85;
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
+}
+
+.name-box .ocr-text {
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.desig-box .ocr-text {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.comp-box {
+  width: 100%;
+}
+
+.comp-box .ocr-text {
+  font-size: 1.02rem;
+  color: #e0f2fe;
+}
+
+.card-meta-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 10px;
+}
+
+.domain-highlight {
+  color: #38bdf8 !important;
+  font-weight: 700;
+}
+
+.card-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-barcode {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.card-barcode span {
+  display: inline-block;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.card-barcode span:nth-child(even) { width: 3px; }
+.card-barcode span:nth-child(odd) { width: 1.5px; }
+.card-barcode span:nth-child(3n) { width: 4px; }
+
+.card-ocr-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--brand-emerald);
+}
+
+/* Floating Badges */
+.floating-badge {
+  position: absolute;
+  background: rgba(15, 22, 45, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.55), 0 0 15px rgba(6, 182, 212, 0.15);
+  backdrop-filter: blur(15px);
+  animation: floatUpDown 6s ease-in-out infinite alternate;
+  z-index: 10;
+}
+
+.floating-badge strong {
+  display: block;
+  font-size: 0.88rem;
+  color: #fff;
+}
+
+.floating-badge span {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.badge-top-left {
+  top: 15px;
+  left: 0;
+  animation-delay: 0s;
+}
+
+.badge-bottom-right {
+  bottom: 15px;
+  right: 0;
+  animation-delay: 3s;
+}
+
+@keyframes floatUpDown {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-12px); }
+}
+
+.visual-footer .tagline {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+/* ==========================================================================
+   RIGHT PANEL: Glassmorphic Login Form with Light Scanning Logo
+   ========================================================================== */
+
+.login-form-panel {
+  display: flex;
+  justify-content: center;
+}
+
+.form-card-glass {
+  width: 100%;
+  max-width: 470px;
+  background: var(--bg-glass-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-xl);
+  padding: 38px 36px;
+  box-shadow: var(--shadow-lg), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(35px);
+  position: relative;
+  overflow: hidden;
+}
+
+.form-card-glass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--brand-cyan-bright), var(--brand-indigo), transparent);
+}
+
+/* ==========================================================================
+   Brand Logo Showcase with Active Scanner Beam & Light Crystal Badge
+   ========================================================================== */
+
+.brand-showcase {
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.logo-scanner-container {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+/* Clean White / Light Crystal Badge for Logo */
+.logo-aura {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  background: #ffffff;
+  border: 2px solid rgba(6, 182, 212, 0.6);
+  border-radius: 18px;
+  box-shadow: 
+    0 12px 35px rgba(0, 0, 0, 0.35),
+    0 0 25px rgba(6, 182, 212, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  width: 260px;
+  height: 95px;
+}
+
+.logo-aura:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 16px 40px rgba(0, 0, 0, 0.45),
+    0 0 35px rgba(6, 182, 212, 0.6);
+}
+
+.login-logo {
+  height: 72px;
+  width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+  display: block;
+}
+
+/* Scanning Laser Beam over Logo */
+.logo-laser-beam {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #06b6d4;
+  box-shadow: 
+    0 0 12px #06b6d4,
+    0 0 24px #22d3ee;
+  z-index: 10;
+  pointer-events: none;
+  animation: scanLogoLaser 2.8s ease-in-out infinite alternate;
+}
+
+.logo-laser-glow {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, rgba(6, 182, 212, 0.3), transparent);
+}
+
+@keyframes scanLogoLaser {
+  0% { top: -4px; opacity: 0.2; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { top: 92px; opacity: 0.2; }
+}
+
+/* Optical Corner Reticles */
+.reticle {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-color: #06b6d4;
+  border-style: solid;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.reticle.top-left {
+  top: 4px;
+  left: 4px;
+  border-width: 2px 0 0 2px;
+  border-top-left-radius: 4px;
+}
+
+.reticle.top-right {
+  top: 4px;
+  right: 4px;
+  border-width: 2px 2px 0 0;
+  border-top-right-radius: 4px;
+}
+
+.reticle.bottom-left {
+  bottom: 4px;
+  left: 4px;
+  border-width: 0 0 2px 2px;
+  border-bottom-left-radius: 4px;
+}
+
+.reticle.bottom-right {
+  bottom: 4px;
+  right: 4px;
+  border-width: 0 2px 2px 0;
+  border-bottom-right-radius: 4px;
+}
+
+.logo-scan-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--brand-cyan-bright);
+  letter-spacing: 0.08em;
+}
+
+.scan-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--brand-cyan-bright);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--brand-cyan-bright);
+  animation: pulseLight 1.2s infinite;
+}
+
+.brand-title {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.brand-subtitle {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Alert Notification */
+.alert-box-3d {
+  background: rgba(239, 68, 68, 0.18);
+  border: 1px solid rgba(239, 68, 68, 0.45);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fecaca;
+  font-size: 0.86rem;
+  font-weight: 600;
+  animation: shakeAlert 0.4s ease-in-out;
+}
+
+@keyframes shakeAlert {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+/* Form Inputs */
+.input-group-3d {
+  margin-bottom: 20px;
+}
+
+.field-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.field-label svg {
+  color: var(--brand-cyan-bright);
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-3d {
+  width: 100%;
+  background: rgba(240, 246, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  font-size: 0.98rem;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  outline: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-3d:focus {
+  border-color: var(--brand-cyan-bright);
+  background: rgba(240, 246, 255, 0.14);
+  box-shadow: 0 0 22px rgba(6, 182, 212, 0.35), inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.input-3d::placeholder {
+  color: var(--text-dim);
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper .input-3d {
+  padding-right: 48px;
+}
+
+.btn-toggle-pwd {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.btn-toggle-pwd:hover {
+  color: var(--brand-cyan-bright);
+}
+
+/* Actions Row */
+.form-row-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 26px;
+  font-size: 0.82rem;
+}
+
+.remember-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.remember-label input[type="checkbox"] {
+  display: none;
+}
+
+.custom-checkbox {
+  width: 16px;
+  height: 16px;
+  background: rgba(240, 246, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.remember-label input[type="checkbox"]:checked + .custom-checkbox {
+  background: var(--brand-cyan-bright);
+  border-color: var(--brand-cyan-bright);
+}
+
+.remember-label input[type="checkbox"]:checked + .custom-checkbox::after {
+  content: '✓';
+  color: #060914;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.security-status {
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 3D Submit Button */
+.btn-login-3d {
+  width: 100%;
+  background: linear-gradient(135deg, #06b6d4, #2563eb);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 15px 24px;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(6, 182, 212, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-login-3d::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.btn-login-3d:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(6, 182, 212, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+}
+
+.btn-login-3d:hover::before {
+  left: 100%;
+}
+
+.btn-login-3d:active {
+  transform: translateY(1px);
+}
+
+.btn-content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-loader {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.login-success {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4) !important;
+}
+
+.error-shake {
+  animation: shakeAlert 0.4s ease-in-out;
+}
+
+.form-card-footer {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 0.74rem;
+  color: var(--text-dim);
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .login-wrapper {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    padding: 20px;
+  }
+  .ocr-visual-panel {
+    display: none;
+  }
+}

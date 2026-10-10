@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login — Ecommerce Gateway Pakistan | Visitor Card OCR</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+<body>
+
+  <!-- Futuristic Ambient Background Particles & Grids -->
+  <div class="cyber-bg">
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+    <div class="ambient-glow glow-3"></div>
+    <div class="grid-overlay"></div>
+    <div class="scanline-overlay"></div>
+  </div>
+
+  <div class="login-wrapper">
+
+    <!-- HERO VISUAL: 3D Holographic Visiting Card OCR Scanner -->
+    <div class="ocr-visual-panel">
+      <div class="visual-header">
+        <span class="live-pill"><span class="pulse-dot"></span> AI VISION ENGINE ACTIVE</span>
+        <span class="tech-tag">QWEN 72B · NVIDIA NIM · GEMINI 2.5</span>
+      </div>
+
+      <div class="hologram-stage">
+        
+        <!-- 3D Card Mockup -->
+        <div class="visiting-card-3d" id="holoCard">
+          
+          <!-- Hologram Laser Scanner Beam -->
+          <div class="scanner-laser">
+            <div class="laser-line"></div>
+            <div class="laser-flare"></div>
+          </div>
+
+          <!-- Card Header & Logo -->
+          <div class="card-top-row">
+            <div class="card-chip-group">
+              <div class="card-chip">
+                <div class="chip-line"></div>
+                <div class="chip-line"></div>
+              </div>
+              <div class="card-watermark">VISITOR CARD</div>
+            </div>
+            
+            <div class="card-logo-badge">
+              <img src="{{ url_for('static', filename='logo.png') }}" alt="Card Logo" class="card-logo-img">
+            </div>
+          </div>
+
+          <!-- Card Body Content with Scanning Dashes -->
+          <div class="card-identity">
+            <div class="ocr-box name-box">
+              <span class="ocr-tag">NAME</span>
+              <span class="ocr-text ocr-dashes">— — — — —</span>
+            </div>
+            <div class="ocr-box desig-box">
+              <span class="ocr-tag">DESIGNATION</span>
+              <span class="ocr-text ocr-dashes">— — — —</span>
+            </div>
+          </div>
+
+          <div class="card-company-section">
+            <div class="ocr-box comp-box">
+              <span class="ocr-tag">COMPANY</span>
+              <span class="ocr-text ocr-dashes">— — — — — — —</span>
+            </div>
+          </div>
+
+          <div class="card-meta-grid">
+            <div class="ocr-box domain-box">
+              <span class="ocr-tag">MAIN DOMAIN</span>
+              <span class="ocr-text ocr-dashes domain-highlight">— — — — —</span>
+            </div>
+            <div class="ocr-box conf-box">
+              <span class="ocr-tag">MATCH</span>
+              <span class="ocr-text ocr-dashes">— — —</span>
+            </div>
+          </div>
+
+          <div class="card-bottom-row">
+            <div class="card-barcode">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="card-ocr-status">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>SCANNING ACTIVE</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="visual-footer">
+        <p class="tagline">Enterprise Visitor Card Digitization & Multi-Modal Intelligence Platform</p>
+      </div>
+    </div>
+
+
+    <!-- LOGIN FORM CARD -->
+    <div class="login-form-panel">
+      <div class="form-card-glass">
+        
+        <!-- Brand Logo with Interactive Scanner & Light Badge -->
+        <div class="brand-showcase">
+          <div class="logo-scanner-container">
+            <div class="logo-aura">
+              <!-- Scanning Laser Beam on Logo -->
+              <div class="logo-laser-beam">
+                <div class="logo-laser-glow"></div>
+              </div>
+              <!-- Corner Optical Targeting Reticles -->
+              <span class="reticle top-left"></span>
+              <span class="reticle top-right"></span>
+              <span class="reticle bottom-left"></span>
+              <span class="reticle bottom-right"></span>
+              <img src="{{ url_for('static', filename='logo.png') }}" alt="Ecommerce Gateway Pakistan Logo" class="login-logo">
+            </div>
+            <div class="logo-scan-badge">
+              <span class="scan-dot"></span>
+              <span>AUTHENTICATED PORTAL</span>
+            </div>
+          </div>
+          <h1 class="brand-title">Ecommerce Gateway</h1>
+          <p class="brand-subtitle">Visitor Card OCR & Database System</p>
+        </div>
+
+        <!-- Alert Notification Box -->
+        <div id="loginAlert" class="alert-box-3d" hidden>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span id="alertMsg">Invalid credentials. Please try again.</span>
+        </div>
+
+        <!-- Form -->
+        <form id="loginForm" autocomplete="off">
+          
+          <div class="input-group-3d">
+            <label for="username" class="field-label">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <span>Username or Access ID</span>
+            </label>
+            <div class="input-wrapper">
+              <input type="text" id="username" name="username" class="input-3d" placeholder="Enter your username" required autofocus spellcheck="false" autocorrect="off">
+            </div>
+          </div>
+
+          <div class="input-group-3d">
+            <label for="password" class="field-label">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <span>Password</span>
+            </label>
+            <div class="input-wrapper password-wrapper">
+              <input type="password" id="password" name="password" class="input-3d" placeholder="Enter your password" required spellcheck="false">
+              <button type="button" class="btn-toggle-pwd" id="togglePwd" title="Show or hide password" tabindex="-1">
+                <svg id="eyeOpen" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg id="eyeClosed" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-row-actions">
+            <label class="remember-label">
+              <input type="checkbox" id="rememberMe" checked>
+              <span class="custom-checkbox"></span>
+              <span>Keep session active</span>
+            </label>
+            <span class="security-status"><span class="secure-icon">🔒</span> SSL Encrypted</span>
+          </div>
+
+          <button type="submit" id="btnSubmit" class="btn-login-3d">
+            <span class="btn-content">
+              <span>Sign In to OCR System</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+            <span class="btn-loader" style="display:none">
+              <span class="spinner"></span>
+              <span>Authenticating...</span>
+            </span>
+          </button>
+
+        </form>
+
+        <div class="form-card-footer">
+          <span>Ecommerce Gateway Pakistan (Pvt) Ltd · All Rights Reserved</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const form = document.getElementById("loginForm");
+    const userInput = document.getElementById("username");
+    const pwdInput = document.getElementById("password");
+    const toggleBtn = document.getElementById("togglePwd");
+    const eyeOpen = document.getElementById("eyeOpen");
+    const eyeClosed = document.getElementById("eyeClosed");
+    const alertBox = document.getElementById("loginAlert");
+    const alertMsg = document.getElementById("alertMsg");
+    const submitBtn = document.getElementById("btnSubmit");
+    const btnContent = submitBtn.querySelector(".btn-content");
+    const btnLoader = submitBtn.querySelector(".btn-loader");
+    const holoCard = document.getElementById("holoCard");
+
+    // Interactive 3D tilt effect on card
+    document.addEventListener("mousemove", (e) => {
+      if (!holoCard) return;
+      const x = (window.innerWidth / 2 - e.clientX) / 40;
+      const y = (window.innerHeight / 2 - e.clientY) / 40;
+      holoCard.style.transform = `perspective(1000px) rotateY(${-x}deg) rotateX(${y}deg)`;
+    });
+
+    // Password show/hide toggle
+    toggleBtn.addEventListener("click", () => {
+      const isPwd = pwdInput.type === "password";
+      pwdInput.type = isPwd ? "text" : "password";
+      eyeOpen.style.display = isPwd ? "none" : "block";
+      eyeClosed.style.display = isPwd ? "block" : "none";
+    });
+
+    // Handle Login Submission
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      alertBox.hidden = true;
+      submitBtn.classList.remove("error-shake");
+
+      const username = userInput.value.trim();
+      const password = pwdInput.value;
+
+      if (!username || !password) {
+        showError("Please enter both username and password.");
+        return;
+      }
+
+      // UI Loading state
+      submitBtn.disabled = true;
+      btnContent.style.display = "none";
+      btnLoader.style.display = "inline-flex";
+
+      try {
+        const resp = await fetch("/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await resp.json();
+
+        if (resp.ok && data.ok) {
+          submitBtn.classList.add("login-success");
+          btnLoader.innerHTML = `<span>Access Granted ✓</span>`;
+          setTimeout(() => {
+            window.location.replace(data.redirect || "/");
+          }, 350);
+        } else {
+          showError(data.error || "Invalid username or password. Please try again.");
+          submitBtn.disabled = false;
+          btnContent.style.display = "inline-flex";
+          btnLoader.style.display = "none";
+          pwdInput.focus();
+        }
+      } catch (err) {
+        showError("Server connection failed. Please ensure the backend is running.");
+        submitBtn.disabled = false;
+        btnContent.style.display = "inline-flex";
+        btnLoader.style.display = "none";
+      }
+    });
+
+    function showError(msg) {
+      alertMsg.textContent = msg;
+      alertBox.hidden = false;
+      submitBtn.classList.add("error-shake");
+      setTimeout(() => submitBtn.classList.remove("error-shake"), 600);
+    }
+
+    // Force re-verification if navigated via Back/Forward buttons
+    window.addEventListener("pageshow", function (event) {
+      if (event.persisted || (window.performance && performance.getEntriesByType("navigation")[0]?.type === "back_forward")) {
+        window.location.reload();
+      }
+    });
+  </script>
+
+</body>
+</html>

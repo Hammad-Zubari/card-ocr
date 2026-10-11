@@ -1,5 +1,5 @@
 pymupdf==1.28.2
-opencv-contrib-python==4.10.0.84
+opencv-contrib-python-headless==4.10.0.84
 numpy==2.3.5
 pillow==12.1.0
 phonenumbers==9.0.40
